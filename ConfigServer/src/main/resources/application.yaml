@@ -1,0 +1,16 @@
+#spring:
+  #rabbitmq:
+    #host: 192.168.99.100
+    #port: 5672
+    #username: guest
+    #password: guest
+application:
+  name: Config-Server
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
+  client:
+    service-url:
+      defaultZone: http://localhost:8083

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <Configuration status="FATAL">
+
+<Appenders>
+
+    <Console name="Console" target="SYSTEM OUT" ignoreExceptions="true">
+
+        <PatternLayout pattern="%clrixdiyyyy-MM-dd HH:mm:ss.SSS)) {faint) %clr(35p) xctr($(sys:PID))magenta) Xelrf---Hfaint) Xetr([x15.15t])faint) %clr(x-48.48c11.)Heyan) Xetr(xx){faint) Xetri:Hfaint) XnxnxxaEx"> </PatternLayout>
+
+    </Console>
+
+</Appenders>
+
+<Loggers>
+
+<Root level="INFO">
+
+    <AppenderRef ref="Console"/>
+
+</Root>
+
+</Loggers>
+
+        </Configuration>
