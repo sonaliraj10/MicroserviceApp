@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: https://github.com/a007patel/properties.git
           skip-ssl-validation: true
           
 management:
