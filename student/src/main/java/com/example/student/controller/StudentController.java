@@ -16,16 +16,8 @@ import java.util.HashMap;
 @RequestMapping("StudentApp")
 public class StudentController {
 
-    @Value("${message}")
-    private String message;
-
     public static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-    @GetMapping("/msg")
-    public ResponseEntity<String> getMsg(){
-        LOGGER.info("Getting message :: " + message);
-        return new ResponseEntity<>(message, HttpStatus.OK);
-    }
 
     @GetMapping("/getStudentName/{id}")
     public ResponseEntity<String> getStudentNameById(@PathVariable("id") Integer id){
