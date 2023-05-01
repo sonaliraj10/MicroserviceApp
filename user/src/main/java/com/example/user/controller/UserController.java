@@ -174,14 +174,14 @@ testing
 
     /** http://localhost:8081/StudentApp/getStudentName/3 **/
     @GetMapping("/getStudentName/{id}")
-    @HystrixCommand(fallbackMethod = "converstionFailedFallback")
+    @HystrixCommand(fallbackMethod = "getStudentNameFailedFallback")
     public ResponseEntity<String> getStudentName(@PathVariable("id") String id){
         String name = studentFeignClient.getStudentNameById(id);
         LOGGER.info("Getting message :: " + name);
         return new ResponseEntity<>(name, HttpStatus.OK);
     }
 
-    private String callStudentServiceAndGetData_Fallback(String id) {
+    private String getStudentNameFailedFallback(String id) {
         System.out.println("Student Service is down!!! fallback route enabled...");
         return "CIRCUIT BREAKER ENABLED!!! No Response From Student Service at this moment. " +
                 " Service will be back shortly" ;
