@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/sonaliraj10/PropertiesFile
+          uri: https://github.com/sonaliraj10/MicroserviceApp/tree/main/properties
           skip-ssl-validation: true
           
 management:
