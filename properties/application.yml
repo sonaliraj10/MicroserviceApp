@@ -1,9 +1,6 @@
 server:
   port: 8081
 
-message : App running in test profile
-
-
 eureka:
   instance:
     preferIpAddress: true
