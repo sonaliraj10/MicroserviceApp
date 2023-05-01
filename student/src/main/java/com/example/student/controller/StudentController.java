@@ -2,6 +2,7 @@ package com.example.student.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,16 @@ import java.util.HashMap;
 @RequestMapping("StudentApp")
 public class StudentController {
 
+    @Value("${message}")
+    private String message;
+
     public static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+
+    @GetMapping("/msg")
+    public ResponseEntity<String> getMsg(){
+        LOGGER.info("Getting message :: " + message);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 
     @GetMapping("/getStudentName/{id}")
     public ResponseEntity<String> getStudentNameById(@PathVariable("id") Integer id){
@@ -27,5 +37,7 @@ public class StudentController {
         LOGGER.info("Getting message :: " + name);
         return new ResponseEntity<>(name, HttpStatus.OK);
     }
+
+
 
 }

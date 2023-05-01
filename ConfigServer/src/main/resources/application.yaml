@@ -1,5 +1,6 @@
-application:
-  name: Config-Server
+spring:
+  application:
+    name: Config-Server
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.int}
@@ -7,4 +8,4 @@ eureka:
     lease-renewal-interval-in-seconds: 1
   client:
     service-url:
-      defaultZone: http://localhost:9091
+      defaultZone: http://localhost:9091/eureka
