@@ -18,7 +18,6 @@ public class StudentController {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-
     @GetMapping("/getStudentName/{id}")
     public ResponseEntity<String> getStudentNameById(@PathVariable("id") Integer id){
         HashMap<Integer, String> map = new HashMap();

@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -173,10 +175,18 @@ testing
 
     /** http://localhost:8081/StudentApp/getStudentName/3 **/
     @GetMapping("/getStudentName/{id}")
+    @HystrixCommand(fallbackMethod = "callStudentServiceAndGetData_Fallback")
     public ResponseEntity<String> getStudentName(@PathVariable("id") String id){
         String name = studentFeignClient.getStudentNameById(id);
         LOGGER.info("Getting message :: " + name);
         return new ResponseEntity<>(name, HttpStatus.OK);
+    }
+
+    private ResponseEntity<String> callStudentServiceAndGetData_Fallback(String id) {
+        System.out.println("Student Service is down!!! fallback route enabled...");
+        String message =  "CIRCUIT BREAKER ENABLED!!! No Response From Student Service at this moment. " +
+                " Service will be back shortly" ;
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     /** http://localhost:8082/DepartmentApp/getStudentMail/3 **/
@@ -194,7 +204,6 @@ testing
         // Make a request to the service using the URI
         return uri;
     }
-
 
 
 }
