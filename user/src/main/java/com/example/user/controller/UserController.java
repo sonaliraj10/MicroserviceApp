@@ -4,7 +4,6 @@ import com.example.user.client.DepartmentFeignClient;
 import com.example.user.client.StudentFeignClient;
 import com.example.user.entity.User;
 import com.example.user.service.UserService;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,17 +173,10 @@ testing
 
     /** http://localhost:8081/StudentApp/getStudentName/3 **/
     @GetMapping("/getStudentName/{id}")
-    @HystrixCommand(fallbackMethod = "getStudentNameFailedFallback")
     public ResponseEntity<String> getStudentName(@PathVariable("id") String id){
         String name = studentFeignClient.getStudentNameById(id);
         LOGGER.info("Getting message :: " + name);
         return new ResponseEntity<>(name, HttpStatus.OK);
-    }
-
-    private String getStudentNameFailedFallback(String id) {
-        System.out.println("Student Service is down!!! fallback route enabled...");
-        return "CIRCUIT BREAKER ENABLED!!! No Response From Student Service at this moment. " +
-                " Service will be back shortly" ;
     }
 
     /** http://localhost:8082/DepartmentApp/getStudentMail/3 **/

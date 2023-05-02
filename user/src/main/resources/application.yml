@@ -4,27 +4,29 @@ management:
             exposure:
                 include: '*'
 spring:
+    application:
+        name: StudentApplication
     datasource:
         password: admin
         url: jdbc:mysql://localhost:3306/userdb
         username: root
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.MySQLDialect
     cloud:
         loadbalancer:
             ribbon:
                 enabled: true
                 eureka:
                     enabled: true
-    application:
-        name: StudentApplication
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+
 
 server:
-    port: 8080
+    port: 8085
+
 
 eureka:
     instance:
@@ -33,5 +35,7 @@ eureka:
         lease-renewal-interval-in-seconds: 1
     client:
         service-url:
-            defaultZone: http://localhost:9091
+            defaultZone: http://localhost:9091/eureka
+
+
 
